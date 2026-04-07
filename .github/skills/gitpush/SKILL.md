@@ -1,7 +1,5 @@
 ---
 name: gitpush
-description: 自动用 git 提交代码并推送到远程仓库。当用户输入 `/gitpush` 时触发此技能。功能包括：自动暂存所有更改、自动生成提交信息、自动提交到本地仓库、自动推送到远程分支。成功后报告提交状态、文件数量和耗时。
-disable-model-invocation: true
 ---
 
 # GitPush 技能
