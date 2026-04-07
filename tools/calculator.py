@@ -23,7 +23,7 @@ _OPS = {
 
 
 def eval_expr(expr: str):
-    """Safely evaluate a math expression string and return result."""
+    """Safely evaluate a math expression string and return result.222"""
     try:
         node = ast.parse(expr, mode="eval").body
         return _eval(node)
