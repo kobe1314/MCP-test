@@ -1,0 +1,37 @@
+name: Validate Skills
+
+on:
+  push:
+    paths:
+      - '.github/skills/**'
+  pull_request:
+    paths:
+      - '.github/skills/**'
+
+jobs:
+  validate:
+    name: Validate skill files
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate skill folders
+        run: |
+          set -e
+          failures=0
+          for d in .github/skills/*; do
+            if [ -d "$d" ]; then
+              if [ ! -f "$d/SKILL.md" ]; then
+                echo "ERROR: Missing SKILL.md in $d"
+                failures=1
+              fi
+              if [ ! -f "$d/.instructions.md" ]; then
+                echo "ERROR: Missing .instructions.md in $d"
+                failures=1
+              fi
+            fi
+          done
+          if [ "$failures" -ne 0 ]; then
+            echo "Skill validation failed"
+            exit 1
+          fi
+          echo "All skills look good"
